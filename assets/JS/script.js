@@ -131,12 +131,36 @@ const iconsList = [
 	}
 ];
 
-for(let icon of iconsList){
-  outputContainer.innerHTML += `
-  <div class="col d-flex justify-content-center align-items-center py-4">
-    <div class="icon-card">
-      <i class="${icon.family} ${icon.prefix+icon.name}" style="color: ${icon.color}"></i>
-      <h4>${icon.name}</h4>
-    </div>
-  </div>`;
+printIconsList(outputContainer, iconsList);
+typeSelector.addEventListener("change", function(){
+  const filteredIconsList = filterArray(iconsList, typeSelector.value);
+  printIconsList(outputContainer, filteredIconsList);
+});
+
+/**
+ * Stampa la lista di icone nel target selezionato
+ * @param {HTMLDivElement} target 
+ * @param {Array} list 
+ */
+function printIconsList(target, list){
+  target.innerHTML = "";
+  for(let icon of list){
+    target.innerHTML += `
+    <div class="col d-flex justify-content-center align-items-center py-4">
+      <div class="icon-card">
+        <i class="${icon.family} ${icon.prefix+icon.name}" style="color: ${icon.color}"></i>
+        <h4>${icon.name}</h4>
+      </div>
+    </div>`;
+  };
+}
+
+/**
+ * Filtra un array in base a una parola.
+ * @param {Array} arrayToFilter 
+ * @param {string} word 
+ * @returns 
+ */
+function filterArray(arrayToFilter, word){
+  return arrayToFilter.filter((icon) => (icon.type===word)||(word==="all"));
 }
