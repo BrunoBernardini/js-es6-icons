@@ -13,6 +13,9 @@ Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi d
 2- popolare le options della select della milestone 3 dinamicamente.
  */
 
+const outputContainer = document.querySelector(".row");
+const typeSelector = document.getElementById("icon-type");
+
 const iconsList = [
 	{
 		name: 'cat',
@@ -127,3 +130,13 @@ const iconsList = [
 		color: 'blue'
 	}
 ];
+
+for(let icon of iconsList){
+  outputContainer.innerHTML += `
+  <div class="col d-flex justify-content-center align-items-center py-4">
+    <div class="icon-card">
+      <i class="${icon.family} ${icon.prefix+icon.name}"></i>
+      <h4>${icon.name}</h4>
+    </div>
+  </div>`;
+}
