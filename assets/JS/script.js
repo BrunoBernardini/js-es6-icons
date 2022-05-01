@@ -135,7 +135,7 @@ for(let icon of iconsList){
   outputContainer.innerHTML += `
   <div class="col d-flex justify-content-center align-items-center py-4">
     <div class="icon-card">
-      <i class="${icon.family} ${icon.prefix+icon.name}"></i>
+      <i class="${icon.family} ${icon.prefix+icon.name}" style="color: ${icon.color}"></i>
       <h4>${icon.name}</h4>
     </div>
   </div>`;
