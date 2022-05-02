@@ -137,6 +137,7 @@ iconsList.forEach((icon) =>{
 });
 
 generateRandomColorPerType(types, iconsList);
+types.forEach(type => typeSelector.innerHTML += `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1)}</option>`);
 
 printIconsList(outputContainer, iconsList);
 typeSelector.addEventListener("change", function(){
