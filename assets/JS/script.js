@@ -131,6 +131,13 @@ const iconsList = [
 	}
 ];
 
+const types = [];
+iconsList.forEach((icon) =>{
+  if(!types.includes(icon.type)) types.push(icon.type);
+});
+
+generateRandomColorPerType(types, iconsList);
+
 printIconsList(outputContainer, iconsList);
 typeSelector.addEventListener("change", function(){
   const filteredIconsList = filterArray(iconsList, typeSelector.value);
@@ -163,4 +170,33 @@ function printIconsList(target, list){
  */
 function filterArray(arrayToFilter, word){
   return arrayToFilter.filter((icon) => (icon.type===word)||(word==="all"));
+}
+
+/**
+ * Assegna dei colori random ad ogni elemento della lista per ogni categoria contenuta nell'array di tipi.
+ * @param {Array} types 
+ * @param {Array} list 
+ */
+function generateRandomColorPerType(types, list){
+  for(let type of types){
+    const randomColor = generateRandomHexColor();
+    for(let listElement of list){
+      if(listElement.type===type) listElement.color = randomColor;
+    }
+  }
+}
+
+/**
+ * Genera un valore random esadecimale a 6 cifre (utilizzabile come colore).
+ * @returns 
+ */
+function generateRandomHexColor(){
+  const letters = ["A", "B", "C", "D", "E", "F"]
+  let randomHex = "#";
+  for(let i=0; i<6; i++){
+    const tempRandom = Math.floor(Math.random()*15);
+    if(tempRandom>9) randomHex += letters[tempRandom-10];
+    else randomHex += tempRandom;
+  }
+  return randomHex;
 }
